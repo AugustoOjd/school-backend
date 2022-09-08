@@ -15,7 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 // import userRoutes from '../routes/usuario'
 const cors_1 = __importDefault(require("cors"));
-// import db from '../db/connection';
+const dbConnection_1 = require("../db/dbConnection");
+const admin_1 = require("./admin");
 class Server {
     constructor() {
         this.paths = {};
@@ -30,12 +31,14 @@ class Server {
     }
     dbConnection() {
         return __awaiter(this, void 0, void 0, function* () {
-            // try {
-            //     await db.authenticate();
-            //     console.log('Database online')
-            // } catch (error: any) {
-            //     throw new Error( error)
-            // }
+            try {
+                yield dbConnection_1.sequelize.authenticate();
+                yield admin_1.Admin.sync();
+                console.log('Connection has been established successfully.');
+            }
+            catch (error) {
+                console.error('Unable to connect to the database:', error);
+            }
         });
     }
     middlewares() {

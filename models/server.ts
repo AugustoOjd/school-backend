@@ -1,7 +1,8 @@
 import express, { Application, json } from 'express'
 // import userRoutes from '../routes/usuario'
 import cors  from 'cors'
-// import db from '../db/connection';
+import { sequelize } from '../db/dbConnection';
+import { Admin } from './admin';
 
 class Server {
 
@@ -25,12 +26,13 @@ class Server {
 
 
     async dbConnection(){
-        // try {
-        //     await db.authenticate();
-        //     console.log('Database online')
-        // } catch (error: any) {
-        //     throw new Error( error)
-        // }
+        try {
+            await sequelize.authenticate();
+            await Admin.sync()
+            console.log('Connection has been established successfully.');
+        } catch (error) {
+            console.error('Unable to connect to the database:', error);
+        }
     }
 
     middlewares(){
