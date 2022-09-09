@@ -29,8 +29,11 @@ exports.Student = dbConnection_1.sequelize.define('Student', {
         type: sequelize_1.DataTypes.STRING,
         defaultValue: 'student'
     },
+    country: {
+        type: sequelize_1.DataTypes.STRING
+    },
     point: {
-        type: sequelize_1.DataTypes.NUMBER,
+        type: sequelize_1.DataTypes.INTEGER,
         defaultValue: 0
     },
 });

@@ -1,14 +1,24 @@
 import express, { Application, json } from 'express'
-// import userRoutes from '../routes/usuario'
+import adminRouter from '../routes/admin'
+import loginRouter from '../routes/login'
+import registerRouter from '../routes/register'
 import cors  from 'cors'
 import { sequelize } from '../db/dbConnection';
-import { Admin } from './admin';
+
+
+// Crearon de tablas
+// import { Admin } from './admin';
+// import { Student } from './student';
 
 class Server {
 
     private app: Application;
     private port: string;
-    private paths = {  }
+    private paths = { 
+        student:    '/api/students',
+        login:      '/api/login',
+        register:   '/api/register'
+    }
 
     constructor(){
         this.app    = express()
@@ -28,7 +38,8 @@ class Server {
     async dbConnection(){
         try {
             await sequelize.authenticate();
-            await Admin.sync()
+            // await Admin.sync()
+            // await Student.sync()
             console.log('Connection has been established successfully.');
         } catch (error) {
             console.error('Unable to connect to the database:', error);
@@ -50,7 +61,9 @@ class Server {
 
 
     routes(){
-        // this.app.use( this.paths.usuarios, userRoutes )
+        this.app.use( this.paths.student, adminRouter ),
+        this.app.use( this.paths.login, loginRouter),
+        this.app.use( this.paths.register, registerRouter)
     }
 
 

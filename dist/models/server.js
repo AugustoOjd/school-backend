@@ -13,13 +13,21 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-// import userRoutes from '../routes/usuario'
+const admin_1 = __importDefault(require("../routes/admin"));
+const login_1 = __importDefault(require("../routes/login"));
+const register_1 = __importDefault(require("../routes/register"));
 const cors_1 = __importDefault(require("cors"));
 const dbConnection_1 = require("../db/dbConnection");
-const admin_1 = require("./admin");
+// Crearon de tablas
+// import { Admin } from './admin';
+// import { Student } from './student';
 class Server {
     constructor() {
-        this.paths = {};
+        this.paths = {
+            student: '/api/students',
+            login: '/api/login',
+            register: '/api/register'
+        };
         this.app = (0, express_1.default)();
         this.port = process.env.PORT || '8000';
         // Base de datos
@@ -33,7 +41,8 @@ class Server {
         return __awaiter(this, void 0, void 0, function* () {
             try {
                 yield dbConnection_1.sequelize.authenticate();
-                yield admin_1.Admin.sync();
+                // await Admin.sync()
+                // await Student.sync()
                 console.log('Connection has been established successfully.');
             }
             catch (error) {
@@ -50,7 +59,9 @@ class Server {
         this.app.use(express_1.default.static('public'));
     }
     routes() {
-        // this.app.use( this.paths.usuarios, userRoutes )
+        this.app.use(this.paths.student, admin_1.default),
+            this.app.use(this.paths.login, login_1.default),
+            this.app.use(this.paths.register, register_1.default);
     }
     listen() {
         this.app.listen(this.port, () => {

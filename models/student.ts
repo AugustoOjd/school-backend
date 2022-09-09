@@ -28,8 +28,12 @@ export const Student = sequelize.define('Student', {
         type: DataTypes.STRING,
         defaultValue: 'student'
     },
+    country:{
+        type: DataTypes.STRING
+    },
     point:{
-        type: DataTypes.NUMBER,
+        type: DataTypes.INTEGER,
         defaultValue: 0
     },
 })
+
