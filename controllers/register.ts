@@ -2,7 +2,7 @@ import { Request, Response } from "express"
 import { IStudent } from "../interface/student"
 import { valitations } from '../utils'
 import bcrypt from 'bcryptjs'
-import { Student } from "../models/student"
+import Student from "../models/student"
 
 
 type Data = 

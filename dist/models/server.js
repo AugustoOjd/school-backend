@@ -24,7 +24,7 @@ const dbConnection_1 = require("../db/dbConnection");
 class Server {
     constructor() {
         this.paths = {
-            student: '/api/students',
+            student: '/api/admin',
             login: '/api/login',
             register: '/api/register'
         };

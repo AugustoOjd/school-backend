@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { getStudents, getStudent, putStudent, postStudent, deleteStudent   } from '../controllers/student'
+import { getStudents, getStudent, putStudent, deleteStudent   } from '../controllers/admin'
 
 const router = Router()
 
@@ -16,10 +16,6 @@ router.get('/:id', [
 router.put('/:id', [
 
 ], putStudent )
-
-router.post('/', [
-
-], postStudent )
 
 router.delete('/:id', [
 

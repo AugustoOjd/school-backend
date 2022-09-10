@@ -15,7 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.registerStudent = void 0;
 const utils_1 = require("../utils");
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
-const student_1 = require("../models/student");
+const student_1 = __importDefault(require("../models/student"));
 const registerStudent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { name = '', lastName = '', email = '', password = '', country = '', state = true, role = 'student', point = 0 } = req.body;
     try {
@@ -35,7 +35,7 @@ const registerStudent = (req, res) => __awaiter(void 0, void 0, void 0, function
             });
         }
         // Validaciones de email
-        const existeEmail = yield student_1.Student.findOne({
+        const existeEmail = yield student_1.default.findOne({
             where: {
                 email: email
             }
@@ -53,7 +53,7 @@ const registerStudent = (req, res) => __awaiter(void 0, void 0, void 0, function
                 msg: 'Debe colocar un pais'
             });
         }
-        yield student_1.Student.create({
+        yield student_1.default.create({
             name,
             lastName,
             email: email.toLocaleLowerCase(),

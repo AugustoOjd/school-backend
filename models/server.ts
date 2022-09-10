@@ -15,7 +15,7 @@ class Server {
     private app: Application;
     private port: string;
     private paths = { 
-        student:    '/api/students',
+        student:    '/api/admin',
         login:      '/api/login',
         register:   '/api/register'
     }

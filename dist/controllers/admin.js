@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteStudent = exports.postStudent = exports.putStudent = exports.getStudent = exports.getStudents = void 0;
+exports.deleteStudent = exports.putStudent = exports.getStudent = exports.getStudents = void 0;
 const student_1 = __importDefault(require("../models/student"));
 const getStudents = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -27,11 +27,11 @@ const getStudents = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
     }
 });
 exports.getStudents = getStudents;
-const getStudent = (req, res) => {
+const getStudent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
     try {
-        return res.status(200).json({
-            msg: 'get ok, estudiante por id'
-        });
+        const student = yield student_1.default.findByPk(id);
+        return res.status(200).json(student);
     }
     catch (error) {
         console.log(error);
@@ -39,13 +39,17 @@ const getStudent = (req, res) => {
             msg: 'bad request students'
         });
     }
-};
+});
 exports.getStudent = getStudent;
-const putStudent = (req, res) => {
+const putStudent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
     try {
-        return res.status(200).json({
-            msg: 'put act por id'
-        });
+        const student = yield student_1.default.findByPk(id);
+        if (!student) {
+            return res.status(400).json({ msg: `Este estudiante con ${id} no existe` });
+        }
+        yield student.update(req.body);
+        return res.status(200).json(student);
     }
     catch (error) {
         console.log(error);
@@ -53,13 +57,14 @@ const putStudent = (req, res) => {
             msg: 'bad request'
         });
     }
-};
+});
 exports.putStudent = putStudent;
-const postStudent = (req, res) => {
+const deleteStudent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
     try {
-        return res.status(200).json({
-            msg: 'post estudiante'
-        });
+        const student = yield student_1.default.findByPk(id);
+        yield (student === null || student === void 0 ? void 0 : student.update({ state: false }));
+        return res.status(200).json(student);
     }
     catch (error) {
         console.log(error);
@@ -67,19 +72,5 @@ const postStudent = (req, res) => {
             msg: 'bad request'
         });
     }
-};
-exports.postStudent = postStudent;
-const deleteStudent = (req, res) => {
-    try {
-        return res.status(200).json({
-            msg: 'delete estudiante por id'
-        });
-    }
-    catch (error) {
-        console.log(error);
-        return res.status(400).json({
-            msg: 'bad request'
-        });
-    }
-};
+});
 exports.deleteStudent = deleteStudent;
