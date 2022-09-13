@@ -14,6 +14,32 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteStudent = exports.putStudent = exports.getStudent = exports.getStudents = void 0;
 const student_1 = __importDefault(require("../models/student"));
+// Creacion seed de admins
+// export const createAdmin = async (req: Request, res: Response)=>{
+//     const { name        = '',
+//             lastName    = '', 
+//             email       = '', 
+//             password    = '',
+//             role        = 'admin',
+//             state       = true
+//         } = req.body
+//     try {
+//         const admin = await Admin.create({
+//             name,    
+//             lastName,
+//             email: email.toLocaleLowerCase(),   
+//             password: bcrypt.hashSync( password ),
+//             role,   
+//             state,   
+//         })
+//         return res.status(200).json(admin)
+//     } catch (error) {
+//         console.log(error)
+//         return res.status(400).json({
+//             msg: 'bad request seed-data'
+//         })
+//     }
+// }
 const getStudents = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const students = yield student_1.default.findAll();

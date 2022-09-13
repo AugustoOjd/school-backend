@@ -12,29 +12,34 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.loginStudent = void 0;
-const student_1 = __importDefault(require("../models/student"));
+exports.loginAdmin = void 0;
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
-const loginStudent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const admin_1 = __importDefault(require("../models/admin"));
+const loginAdmin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email = '', password = '' } = req.body;
     try {
-        const user = yield student_1.default.findOne({
+        const user = yield admin_1.default.findOne({
             where: {
-                email: email
+                email
             }
         });
-        // console.log(user)
         if (!user) {
             return res.status(400).json({
-                msg: 'El correo electronico no existe'
+                msg: 'El correo ingresado es incorrecto'
             });
         }
         if (!bcryptjs_1.default.compareSync(password, user.password)) {
-            return res.status(400).json({ msg: 'Correo o password no valido - PASSWORD' });
+            return res.status(400).json({
+                msg: 'Correo o password no valido - PASSWORD'
+            });
         }
-        // const { email, name, lastName, role} = user
+        if (user.state === false) {
+            return res.status(400).json({
+                msg: 'Este usuario ya no tiene permisos de ingreso'
+            });
+        }
         return res.status(200).json({
-            student: {
+            admin: {
                 email: user.email,
                 name: user.name,
                 lastName: user.lastName,
@@ -46,8 +51,8 @@ const loginStudent = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     catch (error) {
         console.log(error);
         return res.status(400).json({
-            msg: 'bad request'
+            msg: 'Error a logear administrador'
         });
     }
 });
-exports.loginStudent = loginStudent;
+exports.loginAdmin = loginAdmin;

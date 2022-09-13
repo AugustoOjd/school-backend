@@ -13,7 +13,8 @@ type Data =
         email:      string,
         name:       string,
         lastName:   string,
-        role:       string
+        role:       string,
+        state:      boolean
     }
 }
 
@@ -53,7 +54,8 @@ export const loginStudent = async ( req: Request, res: Response<Data>)=>{
             email:      user.email,
             name:       user.name,  
             lastName:   user.lastName,
-            role:       user.role
+            role:       user.role,
+            state:      user.state
         }
     })
 

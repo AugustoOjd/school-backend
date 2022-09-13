@@ -1,5 +1,44 @@
 import { Request, Response } from 'express'
+import Admin from '../models/admin';
 import Student from '../models/student';
+import bcrypt from 'bcryptjs'
+
+
+// Creacion seed de admins
+
+// export const createAdmin = async (req: Request, res: Response)=>{
+    
+    
+//     const { name        = '',
+//             lastName    = '', 
+//             email       = '', 
+//             password    = '',
+//             role        = 'admin',
+//             state       = true
+//         } = req.body
+    
+//     try {
+
+//         const admin = await Admin.create({
+//             name,    
+//             lastName,
+//             email: email.toLocaleLowerCase(),   
+//             password: bcrypt.hashSync( password ),
+//             role,   
+//             state,   
+//         })
+
+
+//         return res.status(200).json(admin)
+
+//     } catch (error) {
+//         console.log(error)
+//         return res.status(400).json({
+//             msg: 'bad request seed-data'
+//         })
+//     }
+
+// }
 
 
 

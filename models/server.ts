@@ -2,22 +2,26 @@ import express, { Application, json } from 'express'
 import adminRouter from '../routes/admin'
 import loginRouter from '../routes/login'
 import registerRouter from '../routes/register'
+import loginAdminRouter from '../routes/loginAdmin'
+// import seedRouter from '../routes/seed-data-admin'
 import cors  from 'cors'
 import { sequelize } from '../db/dbConnection';
 
 
 // Crearon de tablas
-// import { Admin } from './admin';
-// import { Student } from './student';
+// import Admin from './admin';
+// import Student from './student';
 
 class Server {
 
     private app: Application;
     private port: string;
     private paths = { 
-        student:    '/api/admin',
-        login:      '/api/login',
-        register:   '/api/register'
+        dashboard:      '/api/admin/dashboard',
+        loginAdmin:     '/api/admin',
+        login:          '/api/login',
+        register:       '/api/register',
+        // seedData:    '/api/seed-data'
     }
 
     constructor(){
@@ -46,6 +50,8 @@ class Server {
         }
     }
 
+
+
     middlewares(){
 
         // CORS
@@ -61,9 +67,11 @@ class Server {
 
 
     routes(){
-        this.app.use( this.paths.student, adminRouter ),
-        this.app.use( this.paths.login, loginRouter),
-        this.app.use( this.paths.register, registerRouter)
+        this.app.use( this.paths.dashboard, adminRouter ),
+        this.app.use( this.paths.login,     loginRouter),
+        this.app.use( this.paths.register,  registerRouter),
+        this.app.use( this.paths.loginAdmin, loginAdminRouter)
+        // this.app.use( this.paths.seedData, seedRouter )
     }
 
 
