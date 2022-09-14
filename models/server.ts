@@ -23,7 +23,7 @@ class Server {
         // paths administradores
         dashboard:          '/api/admin/dashboard',
         loginAdmin:         '/api/admin',
-        // seedData:        '/api/seed-data'
+        // seedData:        '/api/seed-data',
 
         // paths estudiantes
         dashboardStudent:   '/api/student/dashboard',

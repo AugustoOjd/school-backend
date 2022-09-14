@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.loginAdmin = void 0;
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const admin_1 = __importDefault(require("../models/admin"));
+const jwt_1 = require("../helpers/jwt");
 const loginAdmin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email = '', password = '' } = req.body;
     try {
@@ -38,7 +39,9 @@ const loginAdmin = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
                 msg: 'Este usuario ya no tiene permisos de ingreso'
             });
         }
+        const token = (0, jwt_1.generarJWT)(user.id);
         return res.status(200).json({
+            token,
             admin: {
                 email: user.email,
                 name: user.name,

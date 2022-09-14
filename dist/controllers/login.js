@@ -33,6 +33,11 @@ const loginStudent = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         if (!bcryptjs_1.default.compareSync(password, user.password)) {
             return res.status(400).json({ msg: 'Correo o password no valido - PASSWORD' });
         }
+        if (user.state === false) {
+            return res.status(400).json({
+                msg: 'Este usuario ya no tiene permisos de ingreso'
+            });
+        }
         const token = (0, jwt_1.generarJWT)(user.id);
         return res.status(200).json({
             token,

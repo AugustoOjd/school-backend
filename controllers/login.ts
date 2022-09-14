@@ -46,6 +46,12 @@ export const loginStudent = async ( req: Request, res: Response<Data>)=>{
             return res.status(400).json({msg: 'Correo o password no valido - PASSWORD'})
         }
 
+        if(user.state === false){
+            return res.status(400).json({
+                msg: 'Este usuario ya no tiene permisos de ingreso'
+            })
+        }
+
         const token = generarJWT( user.id )
 
 

@@ -1,25 +1,40 @@
 import {Request, Response, NextFunction} from 'express'
-
-// import { body, CustomValidator } from 'express-validator';
-// // This allows you to reuse the validator
-// const isValidUser: CustomValidator = value => {
-//   return User.findUserByEmail(value).then(user => {
-//     if (user) {
-//       return Promise.reject('E-mail already in use');
-//     }
-//   });
-// };
+import jwt, { JwtPayload } from 'jsonwebtoken'
+import Admin from '../models/admin'
 
 
-export const isAdminRole = (req: Request, res: Response, next: NextFunction)=>{
+export const isAdminRole = async (req: Request, res: Response, next: NextFunction)=>{
 
+    const { token = '' } = req.cookies
 
-
-    const { role, name} = req.body
-
-    if(role !== 'admin'){
-        return res.status(401).json({ msg: `${name} no tiene los permisos de administrador`})
+    if(!token){
+        return res.status(401).json({msg: 'no existen el token'})
     }
+
+    try {
+        
+        const {uid} = jwt.verify( token, process.env.SECRET_KEY_JWT!) as JwtPayload
+
+        const user = await Admin.findByPk(uid)
+
+        if(!user){
+            return res.status(401).json({ msg: 'Usuario no existe en db'})
+        }
+
+        if(user.role !== 'admin'){
+            return res.status(401).json({ msg: 'Este usuario no es administrador'})
+        }
+
+    } catch (error) {
+        console.log(error)
+        return res.status(401).json({msg: 'bad request en validacion Role'})
+    }
+
+    // const { role, name} = req.body
+
+    // if(role !== 'admin'){
+    //     return res.status(401).json({ msg: `${name} no tiene los permisos de administrador`})
+    // }
 
 
     next()

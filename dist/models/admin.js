@@ -28,8 +28,8 @@ const sequelize_1 = require("sequelize");
 const dbConnection_1 = require("../db/dbConnection");
 const Admin = dbConnection_1.sequelize.define('Admin', {
     id: {
-        type: sequelize_1.DataTypes.BIGINT,
-        autoIncrement: true,
+        type: sequelize_1.DataTypes.UUID,
+        defaultValue: sequelize_1.DataTypes.UUIDV4,
         primaryKey: true
     },
     name: {

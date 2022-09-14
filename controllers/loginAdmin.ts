@@ -1,13 +1,14 @@
 import { Request, Response } from 'express'
 import bcrypt from 'bcryptjs';
 import Admin from '../models/admin';
+import { generarJWT } from '../helpers/jwt';
 
 
 
 type Data = 
 | { msg: string }
 | {
-    // token: string,
+    token: string,
     admin:{
         email:      string,
         name:       string,
@@ -48,7 +49,12 @@ export const loginAdmin = async (req: Request, res: Response<Data>) =>{
         }
 
 
+
+        const token = generarJWT(user.id)
+
+
         return res.status(200).json({
+            token,
             admin:{
                 email:      user.email,  
                 name:       user.name,  

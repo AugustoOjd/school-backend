@@ -33,7 +33,7 @@ import { sequelize } from '../db/dbConnection';
 
 interface UserModel extends Model<InferAttributes<UserModel>, InferCreationAttributes<UserModel>> {
   // Some fields are optional when calling UserModel.create() or UserModel.build()
-  id: CreationOptional<number>;
+  id: CreationOptional<string>;
   name:       string,
   lastName:   string,
   email:      string,
@@ -47,8 +47,8 @@ interface UserModel extends Model<InferAttributes<UserModel>, InferCreationAttri
 
 const Admin = sequelize.define<UserModel>('Admin', {
     id:{
-        type: DataTypes.BIGINT,
-        autoIncrement: true,
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
         primaryKey: true
     },
     name:{
