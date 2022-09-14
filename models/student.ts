@@ -47,7 +47,7 @@ import { sequelize } from '../db/dbConnection';
 
 interface UserModel extends Model<InferAttributes<UserModel>, InferCreationAttributes<UserModel>> {
   // Some fields are optional when calling UserModel.create() or UserModel.build()
-  id: CreationOptional<number>;
+  id: CreationOptional<string>;
   name:       string,
   lastName:   string,
   password:   string,

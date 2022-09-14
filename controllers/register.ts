@@ -3,12 +3,13 @@ import { IStudent } from "../interface/student"
 import { valitations } from '../utils'
 import bcrypt from 'bcryptjs'
 import Student from "../models/student"
+import { generarJWT } from "../helpers/jwt"
 
 
 type Data = 
 | { msg: string }
 | {
-    // token: string,
+    token: string,
     student:{
         email:string,
         name: string,
@@ -78,7 +79,7 @@ export const registerStudent = async ( req: Request<IStudent>, res: Response<Dat
         }
         
 
-        await Student.create({
+        const user = await Student.create({
             name,    
             lastName,
             email: email.toLocaleLowerCase(), 
@@ -90,12 +91,12 @@ export const registerStudent = async ( req: Request<IStudent>, res: Response<Dat
         })
 
 
-
-        // const student = Student.build(newStudent)
-        // await student.save()
+        const token = generarJWT( user.id )
 
 
-        return res.status(201).json({student:{
+        return res.status(201).json({
+            token,
+            student:{
             email, 
             role, 
             name,

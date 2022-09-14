@@ -1,11 +1,13 @@
 import express, { Application, json } from 'express'
-import adminRouter from '../routes/admin'
+import adminRouter from '../routes/dashboardAdmin'
 import loginRouter from '../routes/login'
 import registerRouter from '../routes/register'
 import loginAdminRouter from '../routes/loginAdmin'
+import studentRouter from '../routes/dashboardStudent'
 // import seedRouter from '../routes/seed-data-admin'
 import cors  from 'cors'
 import { sequelize } from '../db/dbConnection';
+import cookieParser from 'cookie-parser'
 
 
 // Crearon de tablas
@@ -17,11 +19,17 @@ class Server {
     private app: Application;
     private port: string;
     private paths = { 
-        dashboard:      '/api/admin/dashboard',
-        loginAdmin:     '/api/admin',
-        login:          '/api/login',
-        register:       '/api/register',
-        // seedData:    '/api/seed-data'
+
+        // paths administradores
+        dashboard:          '/api/admin/dashboard',
+        loginAdmin:         '/api/admin',
+        // seedData:        '/api/seed-data'
+
+        // paths estudiantes
+        dashboardStudent:   '/api/student/dashboard',
+        login:              '/api/login',
+        register:           '/api/register',
+
     }
 
     constructor(){
@@ -35,7 +43,7 @@ class Server {
         this.middlewares();
 
         // Definir rutas
-        this.routes();
+        this.routes();                                                                                                      
     }
 
 
@@ -63,6 +71,8 @@ class Server {
         // Carpeta Publica
 
         this.app.use( express.static( 'public' ) )
+
+        this.app.use( cookieParser() )
     }
 
 
@@ -70,7 +80,8 @@ class Server {
         this.app.use( this.paths.dashboard, adminRouter ),
         this.app.use( this.paths.login,     loginRouter),
         this.app.use( this.paths.register,  registerRouter),
-        this.app.use( this.paths.loginAdmin, loginAdminRouter)
+        this.app.use( this.paths.loginAdmin, loginAdminRouter),
+        this.app.use( this.paths.dashboardStudent, studentRouter)
         // this.app.use( this.paths.seedData, seedRouter )
     }
 

@@ -13,24 +13,29 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const admin_1 = __importDefault(require("../routes/admin"));
+const dashboardAdmin_1 = __importDefault(require("../routes/dashboardAdmin"));
 const login_1 = __importDefault(require("../routes/login"));
 const register_1 = __importDefault(require("../routes/register"));
 const loginAdmin_1 = __importDefault(require("../routes/loginAdmin"));
+const dashboardStudent_1 = __importDefault(require("../routes/dashboardStudent"));
 // import seedRouter from '../routes/seed-data-admin'
 const cors_1 = __importDefault(require("cors"));
 const dbConnection_1 = require("../db/dbConnection");
+const cookie_parser_1 = __importDefault(require("cookie-parser"));
 // Crearon de tablas
 // import Admin from './admin';
 // import Student from './student';
 class Server {
     constructor() {
         this.paths = {
+            // paths administradores
             dashboard: '/api/admin/dashboard',
             loginAdmin: '/api/admin',
+            // seedData:        '/api/seed-data'
+            // paths estudiantes
+            dashboardStudent: '/api/student/dashboard',
             login: '/api/login',
             register: '/api/register',
-            // seedData:    '/api/seed-data'
         };
         this.app = (0, express_1.default)();
         this.port = process.env.PORT || '8000';
@@ -61,12 +66,14 @@ class Server {
         this.app.use(express_1.default.json());
         // Carpeta Publica
         this.app.use(express_1.default.static('public'));
+        this.app.use((0, cookie_parser_1.default)());
     }
     routes() {
-        this.app.use(this.paths.dashboard, admin_1.default),
+        this.app.use(this.paths.dashboard, dashboardAdmin_1.default),
             this.app.use(this.paths.login, login_1.default),
             this.app.use(this.paths.register, register_1.default),
-            this.app.use(this.paths.loginAdmin, loginAdmin_1.default);
+            this.app.use(this.paths.loginAdmin, loginAdmin_1.default),
+            this.app.use(this.paths.dashboardStudent, dashboardStudent_1.default);
         // this.app.use( this.paths.seedData, seedRouter )
     }
     listen() {

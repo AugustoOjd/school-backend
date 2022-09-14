@@ -2,13 +2,14 @@ import { Request, Response } from "express"
 import Student  from "../models/student"
 import bcrypt from 'bcryptjs';
 import { IStudent } from '../interface/student';
+import { generarJWT } from "../helpers/jwt";
 
 
 
 type Data = 
 | { msg: string }
 | {
-    // token: string,
+    token: string,
     student:{
         email:      string,
         name:       string,
@@ -45,19 +46,22 @@ export const loginStudent = async ( req: Request, res: Response<Data>)=>{
             return res.status(400).json({msg: 'Correo o password no valido - PASSWORD'})
         }
 
-
-        // const { email, name, lastName, role} = user
+        const token = generarJWT( user.id )
 
 
     return res.status(200).json({
+        token,
         student:{
             email:      user.email,
             name:       user.name,  
             lastName:   user.lastName,
             role:       user.role,
-            state:      user.state
+            state:      user.state,
+
         }
     })
+
+
 
 
     } catch (error) {

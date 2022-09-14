@@ -5,7 +5,9 @@ import { loginAdmin } from '../controllers/loginAdmin';
 const router = Router()
 
 
-router.post('/', loginAdmin)
+router.post('/', [
+    
+], loginAdmin)
 
 
 
