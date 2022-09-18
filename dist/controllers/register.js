@@ -22,12 +22,12 @@ const registerStudent = (req, res) => __awaiter(void 0, void 0, void 0, function
     try {
         if (name.length < 3) {
             return res.status(400).json({
-                msg: 'El nombre debe tener mas de 6 caracteres'
+                msg: 'El nombre debe tener mas de 3 caracteres'
             });
         }
         if (lastName.length < 3) {
             return res.status(400).json({
-                msg: 'El apellido debe tener mas de 6 caracteres'
+                msg: 'El apellido debe tener mas de 3 caracteres'
             });
         }
         if (password.length < 6) {
