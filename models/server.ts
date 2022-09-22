@@ -1,4 +1,4 @@
-import express, { Application, json } from 'express'
+import express, { Application, json, urlencoded } from 'express'
 import adminRouter from '../routes/dashboardAdmin'
 import loginRouter from '../routes/login'
 import registerRouter from '../routes/register'
@@ -8,6 +8,7 @@ import studentRouter from '../routes/dashboardStudent'
 import cors  from 'cors'
 import { sequelize } from '../db/dbConnection';
 import cookieParser from 'cookie-parser'
+import helmet from 'helmet'
 
 
 // Crearon de tablas
@@ -62,17 +63,27 @@ class Server {
 
     middlewares(){
 
+
+        this.app.use( cookieParser() )
+
+        this.app.use(helmet())
+
         // CORS
         
-        this.app.use( cors())
+        this.app.use( cors(
+            {
+                origin: 'http://localhost:3000',
+                methods: 'GET, HEAD, PUT, PATCH, POST, DELETE',
+                credentials: true,
+              }
+        ))
         // Lectura del body
 
         this.app.use( express.json() )
         // Carpeta Publica
 
         this.app.use( express.static( 'public' ) )
-
-        this.app.use( cookieParser() )
+        
     }
 
 

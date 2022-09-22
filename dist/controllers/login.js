@@ -47,6 +47,7 @@ const loginStudent = (req, res) => __awaiter(void 0, void 0, void 0, function* (
                 lastName: user.lastName,
                 role: user.role,
                 state: user.state,
+                point: user.point
             }
         });
     }

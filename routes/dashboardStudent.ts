@@ -6,7 +6,7 @@ const router = Router()
 
 
 router.get('/', [
-    // validarJWT
+    validarJWT
 ], dashboardStudent)
 
 

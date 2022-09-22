@@ -11,6 +11,7 @@ import Admin from "../models/admin"
 export const validarJWT = async (req: Request, res: Response, next: NextFunction) =>{
 
     const { token = '' } = req.cookies
+    console.log(token)
 
     // const token = req.header('x-token')
 

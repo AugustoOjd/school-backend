@@ -18,6 +18,7 @@ const student_1 = __importDefault(require("../models/student"));
 const admin_1 = __importDefault(require("../models/admin"));
 const validarJWT = (req, res, next) => __awaiter(void 0, void 0, void 0, function* () {
     const { token = '' } = req.cookies;
+    console.log(token);
     // const token = req.header('x-token')
     if (!token) {
         return res.status(401).json({ msg: 'no existen el token' });
