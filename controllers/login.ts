@@ -11,6 +11,7 @@ type Data =
 | {
     token: string,
     student:{
+        id:         string,
         email:      string,
         name:       string,
         lastName:   string,
@@ -59,6 +60,7 @@ export const loginStudent = async ( req: Request, res: Response<Data>)=>{
     return res.status(200).json({
         token,
         student:{
+            id:         user.id,
             email:      user.email,
             name:       user.name,  
             lastName:   user.lastName,

@@ -18,7 +18,7 @@ const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const student_1 = __importDefault(require("../models/student"));
 const jwt_1 = require("../helpers/jwt");
 const registerStudent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { name = '', lastName = '', email = '', password = '', country = '', state = true, role = 'student', point = 0 } = req.body;
+    const { name = '', lastName = '', email = '', password = '', country = '', state = true, role = 'student', } = req.body;
     try {
         if (name.length < 3) {
             return res.status(400).json({
@@ -62,17 +62,18 @@ const registerStudent = (req, res) => __awaiter(void 0, void 0, void 0, function
             country,
             state,
             role,
-            point,
+            point: 0,
         });
         const token = (0, jwt_1.generarJWT)(user.id);
         return res.status(201).json({
             token,
             student: {
-                email,
-                role,
-                name,
-                lastName,
-                country
+                id: user.id,
+                email: user.email,
+                role: user.role,
+                name: user.name,
+                lastName: user.lastName,
+                country: user.country
             }
         });
     }

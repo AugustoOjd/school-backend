@@ -11,11 +11,12 @@ type Data =
 | {
     token: string,
     student:{
-        email:string,
-        name: string,
-        lastName: string,
-        country: string,
-        role: string
+        id:         string,
+        email:      string,
+        name:       string,
+        lastName:   string,
+        country:    string,
+        role:       string
     }
 }
 
@@ -31,7 +32,7 @@ export const registerStudent = async ( req: Request<IStudent>, res: Response<Dat
         country     = '',    
         state       = true,
         role        = 'student',
-        point       = 0  } = req.body
+        } = req.body
 
     try {
 
@@ -87,7 +88,7 @@ export const registerStudent = async ( req: Request<IStudent>, res: Response<Dat
             country, 
             state,   
             role,    
-            point, 
+            point: 0, 
         })
 
 
@@ -97,11 +98,12 @@ export const registerStudent = async ( req: Request<IStudent>, res: Response<Dat
         return res.status(201).json({
             token,
             student:{
-            email, 
-            role, 
-            name,
-            lastName,
-            country
+            id:         user.id,
+            email:      user.email, 
+            role:       user.role, 
+            name:       user.name,
+            lastName:   user.lastName,
+            country:    user.country
         }})
     } catch (error) {
         console.log(error)

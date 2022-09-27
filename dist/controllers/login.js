@@ -42,6 +42,7 @@ const loginStudent = (req, res) => __awaiter(void 0, void 0, void 0, function* (
         return res.status(200).json({
             token,
             student: {
+                id: user.id,
                 email: user.email,
                 name: user.name,
                 lastName: user.lastName,

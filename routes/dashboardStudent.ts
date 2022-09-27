@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { dashboardStudent } from "../controllers/dashboardStudent";
+import { dashboardRanking, putPoints } from "../controllers/dashboardStudent";
 import { validarJWT } from "../middlewares/validateJWT";
 
 const router = Router()
@@ -7,7 +7,11 @@ const router = Router()
 
 router.get('/', [
     // validarJWT
-], dashboardStudent)
+], dashboardRanking)
+
+router.put('/:id', [
+    validarJWT
+], putPoints)
 
 
 export default router

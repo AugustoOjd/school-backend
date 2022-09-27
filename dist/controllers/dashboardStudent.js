@@ -12,9 +12,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.dashboardStudent = void 0;
+exports.putPoints = exports.dashboardRanking = void 0;
 const student_1 = __importDefault(require("../models/student"));
-const dashboardStudent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const dashboardRanking = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const allPoints = yield student_1.default.findAll({
             attributes: ['name', 'point']
@@ -28,4 +28,34 @@ const dashboardStudent = (req, res) => __awaiter(void 0, void 0, void 0, functio
         });
     }
 });
-exports.dashboardStudent = dashboardStudent;
+exports.dashboardRanking = dashboardRanking;
+const putPoints = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const { point } = req.body;
+    try {
+        const student = yield student_1.default.findByPk(id);
+        if (!student) {
+            return res.status(400).json({
+                msg: 'No se encontro ese estudiante con id: ' + id
+            });
+        }
+        if (student) {
+            yield student_1.default.update({ point: point }, {
+                where: {
+                    id: id
+                }
+            });
+        }
+        return res.status(201).json({
+            msg: 'Actulizado correctamente',
+            point: point
+        });
+    }
+    catch (error) {
+        console.log(error);
+        return res.status(400).json({
+            msg: 'bad request put points'
+        });
+    }
+});
+exports.putPoints = putPoints;
