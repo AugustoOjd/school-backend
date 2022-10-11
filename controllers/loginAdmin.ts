@@ -10,6 +10,7 @@ type Data =
 | {
     token: string,
     admin:{
+        id:         string,
         email:      string,
         name:       string,
         lastName:   string,
@@ -56,6 +57,7 @@ export const loginAdmin = async (req: Request, res: Response<Data>) =>{
         return res.status(200).json({
             token,
             admin:{
+                id:         user.id,
                 email:      user.email,  
                 name:       user.name,  
                 lastName:   user.lastName,

@@ -7,6 +7,9 @@ const router = (0, express_1.Router)();
 router.get('/', [
 // validarJWT
 ], dashboardStudent_1.dashboardRanking);
+router.get('/session/:id', [
+    validateJWT_1.validarJWT
+], dashboardStudent_1.getSession);
 router.put('/:id', [
     validateJWT_1.validarJWT
 ], dashboardStudent_1.putPoints);
