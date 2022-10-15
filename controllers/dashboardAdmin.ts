@@ -81,7 +81,7 @@ export const getStudent = async (req: Request, res: Response)=>{
 
 export const putStudent = async (req: Request, res: Response)=>{
 
-    const { id } = req.params
+    const { id } = req.body
 
     try {
 
@@ -106,13 +106,13 @@ export const putStudent = async (req: Request, res: Response)=>{
 
 export const deleteStudent = async (req: Request, res: Response)=>{
 
-    const { id } = req.params
+    const { id, state } = req.body
     
     try {
 
         const student = await Student.findByPk(id)
 
-        await student?.update({state: false})
+        await student?.update({state: state})
 
         return res.status(200).json(student)
 

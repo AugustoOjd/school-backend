@@ -68,7 +68,7 @@ const getStudent = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 });
 exports.getStudent = getStudent;
 const putStudent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id } = req.params;
+    const { id } = req.body;
     try {
         const student = yield student_1.default.findByPk(id);
         if (!student) {
@@ -86,10 +86,10 @@ const putStudent = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 });
 exports.putStudent = putStudent;
 const deleteStudent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id } = req.params;
+    const { id, state } = req.body;
     try {
         const student = yield student_1.default.findByPk(id);
-        yield (student === null || student === void 0 ? void 0 : student.update({ state: false }));
+        yield (student === null || student === void 0 ? void 0 : student.update({ state: state }));
         return res.status(200).json(student);
     }
     catch (error) {
