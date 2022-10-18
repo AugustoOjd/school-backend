@@ -21,7 +21,7 @@ export const dashboardRanking = async (req: Request, res: Response)=>{
     try {
 
         const allPoints = await Student.findAll({
-            attributes: [ 'name', 'point']
+            attributes: [ 'name', 'point', 'state']
             
         })
         

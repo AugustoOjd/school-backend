@@ -17,7 +17,7 @@ const student_1 = __importDefault(require("../models/student"));
 const dashboardRanking = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const allPoints = yield student_1.default.findAll({
-            attributes: ['name', 'point']
+            attributes: ['name', 'point', 'state']
         });
         return res.status(200).json(allPoints);
     }

@@ -68,13 +68,13 @@ const getStudent = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 });
 exports.getStudent = getStudent;
 const putStudent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id } = req.body;
+    const { id, state } = req.body;
     try {
         const student = yield student_1.default.findByPk(id);
         if (!student) {
             return res.status(400).json({ msg: `Este estudiante con ${id} no existe` });
         }
-        yield student.update(req.body);
+        yield student.update({ state: state });
         return res.status(200).json(student);
     }
     catch (error) {

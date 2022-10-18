@@ -81,7 +81,7 @@ export const getStudent = async (req: Request, res: Response)=>{
 
 export const putStudent = async (req: Request, res: Response)=>{
 
-    const { id } = req.body
+    const { id, state } = req.body
 
     try {
 
@@ -91,7 +91,7 @@ export const putStudent = async (req: Request, res: Response)=>{
             return res.status(400).json({ msg: `Este estudiante con ${id} no existe`})
         }
 
-        await student.update( req.body )
+        await student.update( {state: state} )
 
         return res.status(200).json(student)
         
