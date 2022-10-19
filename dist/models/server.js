@@ -25,7 +25,7 @@ const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const helmet_1 = __importDefault(require("helmet"));
 // Crearon de tablas
 // import Admin from './admin';
-// import Student from './student';
+const student_1 = __importDefault(require("./student"));
 class Server {
     constructor() {
         this.paths = {
@@ -52,7 +52,7 @@ class Server {
             try {
                 yield dbConnection_1.sequelize.authenticate();
                 // await Admin.sync()
-                // await Student.sync()
+                yield student_1.default.sync();
                 console.log('Connection has been established successfully.');
             }
             catch (error) {

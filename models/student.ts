@@ -56,6 +56,7 @@ interface UserModel extends Model<InferAttributes<UserModel>, InferCreationAttri
   role:       string,
   country:    string,
   point:      number,
+  nivel:      number,  
 
   createdAt?: string,
   updatedAt?: string
@@ -94,6 +95,10 @@ const Student = sequelize.define<UserModel>('Student', {
         type: DataTypes.INTEGER,
         defaultValue: 0
     },
+    nivel: {
+        type: DataTypes.INTEGER,
+        defaultValue: 0
+    }
 });
 
 export default Student

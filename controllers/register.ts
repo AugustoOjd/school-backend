@@ -16,7 +16,9 @@ type Data =
         name:       string,
         lastName:   string,
         country:    string,
-        role:       string
+        role:       string,
+        point:      number,
+        nivel:      number
     }
 }
 
@@ -31,7 +33,7 @@ export const registerStudent = async ( req: Request<IStudent>, res: Response<Dat
         password    = '', 
         country     = '',    
         state       = true,
-        role        = 'student',
+        role        = 'student'
         } = req.body
 
     try {
@@ -45,6 +47,12 @@ export const registerStudent = async ( req: Request<IStudent>, res: Response<Dat
         if(lastName.length < 3){
             return res.status(400).json({
                 msg: 'El apellido debe tener mas de 3 caracteres'
+            })
+        }
+
+        if(country.length < 3){
+            return res.status(400).json({
+                msg: 'Debe ingresar un pais'
             })
         }
 
@@ -88,7 +96,8 @@ export const registerStudent = async ( req: Request<IStudent>, res: Response<Dat
             country, 
             state,   
             role,    
-            point: 0, 
+            point: 0,
+            nivel:  0 
         })
 
 
@@ -103,7 +112,9 @@ export const registerStudent = async ( req: Request<IStudent>, res: Response<Dat
             role:       user.role, 
             name:       user.name,
             lastName:   user.lastName,
-            country:    user.country
+            country:    user.country,
+            point:      user.point,
+            nivel:      user.nivel
         }})
     } catch (error) {
         console.log(error)

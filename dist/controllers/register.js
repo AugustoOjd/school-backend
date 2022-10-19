@@ -18,7 +18,7 @@ const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const student_1 = __importDefault(require("../models/student"));
 const jwt_1 = require("../helpers/jwt");
 const registerStudent = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { name = '', lastName = '', email = '', password = '', country = '', state = true, role = 'student', } = req.body;
+    const { name = '', lastName = '', email = '', password = '', country = '', state = true, role = 'student' } = req.body;
     try {
         if (name.length < 3) {
             return res.status(400).json({
@@ -28,6 +28,11 @@ const registerStudent = (req, res) => __awaiter(void 0, void 0, void 0, function
         if (lastName.length < 3) {
             return res.status(400).json({
                 msg: 'El apellido debe tener mas de 3 caracteres'
+            });
+        }
+        if (country.length < 3) {
+            return res.status(400).json({
+                msg: 'Debe ingresar un pais'
             });
         }
         if (password.length < 6) {
@@ -63,6 +68,7 @@ const registerStudent = (req, res) => __awaiter(void 0, void 0, void 0, function
             state,
             role,
             point: 0,
+            nivel: 0
         });
         const token = (0, jwt_1.generarJWT)(user.id);
         return res.status(201).json({
@@ -73,7 +79,9 @@ const registerStudent = (req, res) => __awaiter(void 0, void 0, void 0, function
                 role: user.role,
                 name: user.name,
                 lastName: user.lastName,
-                country: user.country
+                country: user.country,
+                point: user.point,
+                nivel: user.nivel
             }
         });
     }

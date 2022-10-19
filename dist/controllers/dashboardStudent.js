@@ -76,7 +76,8 @@ const getSession = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
                 lastName: student.lastName,
                 role: student.role,
                 state: student.state,
-                point: student.point
+                point: student.point,
+                nivel: student.nivel
             }
         });
     }

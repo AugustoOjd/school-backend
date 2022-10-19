@@ -11,7 +11,8 @@ type Data =
     lastName:   string,
     role:       string,
     state:      boolean,
-    point:      number
+    point:      number,
+    nivel:      number
 }
 }
 
@@ -97,7 +98,8 @@ export const getSession = async (req: Request, res: Response<Data>)=>{
                 lastName:   student.lastName,
                 role:       student.role,
                 state:      student.state,
-                point:      student.point
+                point:      student.point,
+                nivel:      student.nivel
             }   
         })
     } catch (error) {

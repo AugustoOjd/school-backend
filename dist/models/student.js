@@ -72,5 +72,9 @@ const Student = dbConnection_1.sequelize.define('Student', {
         type: sequelize_1.DataTypes.INTEGER,
         defaultValue: 0
     },
+    nivel: {
+        type: sequelize_1.DataTypes.INTEGER,
+        defaultValue: 0
+    }
 });
 exports.default = Student;
