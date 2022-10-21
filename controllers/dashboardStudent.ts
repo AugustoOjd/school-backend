@@ -39,7 +39,7 @@ export const putPoints = async (req: Request, res: Response) =>{
 
     const { id } = req.params
 
-    const { point } = req.body
+    const { point, nivel } = req.body
 
     try {
         
@@ -52,7 +52,7 @@ export const putPoints = async (req: Request, res: Response) =>{
         }
 
         if(student){
-            await Student.update({ point: point}, {
+            await Student.update({ point: point, nivel: nivel}, {
                 where: {
                     id: id
                 }
@@ -62,7 +62,8 @@ export const putPoints = async (req: Request, res: Response) =>{
 
         return res.status(201).json({
             msg: 'Actulizado correctamente', 
-            point: point
+            point: point,
+            nivel: nivel
         })
 
     } catch (error) {

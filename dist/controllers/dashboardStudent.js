@@ -31,7 +31,7 @@ const dashboardRanking = (req, res) => __awaiter(void 0, void 0, void 0, functio
 exports.dashboardRanking = dashboardRanking;
 const putPoints = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const { point } = req.body;
+    const { point, nivel } = req.body;
     try {
         const student = yield student_1.default.findByPk(id);
         if (!student) {
@@ -40,7 +40,7 @@ const putPoints = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
             });
         }
         if (student) {
-            yield student_1.default.update({ point: point }, {
+            yield student_1.default.update({ point: point, nivel: nivel }, {
                 where: {
                     id: id
                 }
@@ -48,7 +48,8 @@ const putPoints = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
         }
         return res.status(201).json({
             msg: 'Actulizado correctamente',
-            point: point
+            point: point,
+            nivel: nivel
         });
     }
     catch (error) {
