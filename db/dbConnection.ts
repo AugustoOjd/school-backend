@@ -21,6 +21,7 @@ export const sequelize = new Sequelize( `postgres://${DB_USER}:${DB_PASSWORD}@${
     }
 })
 
+
 // export const sequelize = new Sequelize( 
 //     process.env.DB_NAME || 'school-server', 
 //     process.env.DB_USER || 'postgres', 
