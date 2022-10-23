@@ -72,7 +72,7 @@ class Server {
         
         this.app.use( cors(
             {
-                origin: 'http://localhost:3000',
+                origin: 'https://u-culture.azurewebsites.net',
                 methods: 'GET, HEAD, PUT, PATCH, POST, DELETE',
                 credentials: true,
               }

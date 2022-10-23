@@ -65,7 +65,7 @@ class Server {
         this.app.use((0, helmet_1.default)());
         // CORS
         this.app.use((0, cors_1.default)({
-            origin: 'http://localhost:3000',
+            origin: 'https://u-culture.azurewebsites.net',
             methods: 'GET, HEAD, PUT, PATCH, POST, DELETE',
             credentials: true,
         }));
