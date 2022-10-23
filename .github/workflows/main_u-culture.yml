@@ -66,4 +66,5 @@ jobs:
           DB_NAME: ${{ secrets.DB_NAME }}
           DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
           DB_USER:  ${{ secrets.DB_USER }}
+          SECRET_KEY_JWT: ${{ @5faGVd24acA1s@cf15 }}
 
