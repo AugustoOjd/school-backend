@@ -57,7 +57,7 @@ export const getStudents = async ( req: Request, res: Response)=>{
             msg: 'bad request all students'
         })
     }
-}
+}    
 
 
 export const getStudent = async (req: Request, res: Response)=>{
