@@ -12,7 +12,7 @@ import helmet from 'helmet'
 
 
 // Crearon de tablas
-// import Admin from './admin';
+import Admin from './admin';
 import Student from './student';
 
 class Server {
@@ -51,7 +51,7 @@ class Server {
     async dbConnection(){
         try {
             await sequelize.authenticate();
-            // await Admin.sync()
+            await Admin.sync()
             await Student.sync()
             console.log('Connection has been established successfully.');
         } catch (error) {
