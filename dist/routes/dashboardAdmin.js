@@ -4,6 +4,7 @@ const express_1 = require("express");
 const dashboardAdmin_1 = require("../controllers/dashboardAdmin");
 const validateRole_1 = require("../middlewares/validateRole");
 const validateJWT_1 = require("../middlewares/validateJWT");
+const validarSuperAdmin_1 = require("../middlewares/validarSuperAdmin");
 const router = (0, express_1.Router)();
 router.get('/', [
     validateJWT_1.validarJWTAdmin,
@@ -15,6 +16,7 @@ router.get('/:id', [
 ], dashboardAdmin_1.getStudent);
 router.put('/:id', [
     validateJWT_1.validarJWTAdmin,
+    validarSuperAdmin_1.isSuperAdminRole
 ], dashboardAdmin_1.putStudent);
 router.delete('/:id', [
     validateJWT_1.validarJWTAdmin,

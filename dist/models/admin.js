@@ -1,29 +1,5 @@
 "use strict";
-// import { Sequelize, DataTypes } from 'sequelize';
-// import { sequelize } from '../db/dbConnection';
 Object.defineProperty(exports, "__esModule", { value: true });
-// export const Admin = sequelize.define( 'Admin', {
-//     id: {
-//         type: DataTypes.INTEGER,
-//         primaryKey: true,
-//         autoIncrement: true
-//     },
-//     name:{
-//         type: DataTypes.STRING
-//     },
-//     lastName:{
-//         type: DataTypes.STRING
-//     },
-//     password:{
-//         type: DataTypes.STRING
-//     },
-//     state:{
-//         type: DataTypes.BOOLEAN
-//     },
-//     role:{
-//         type: DataTypes.STRING
-//     }
-// })
 const sequelize_1 = require("sequelize");
 const dbConnection_1 = require("../db/dbConnection");
 const Admin = dbConnection_1.sequelize.define('Admin', {

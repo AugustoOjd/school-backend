@@ -7,7 +7,7 @@ exports.sequelize = void 0;
 const sequelize_1 = require("sequelize");
 const dotenv_1 = __importDefault(require("dotenv"));
 dotenv_1.default.config();
-exports.sequelize = new sequelize_1.Sequelize('school-data', 'postgres', process.env.DB_PASSWORD, {
-    host: 'localhost',
+exports.sequelize = new sequelize_1.Sequelize(process.env.DB_NAME || 'school-server', process.env.DB_USER || 'postgres', process.env.DB_PASSWORD, {
+    host: process.env.DB_HOST,
     dialect: 'postgres'
 });

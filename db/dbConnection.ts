@@ -5,11 +5,11 @@ dotenv.config()
 
 
 export const sequelize = new Sequelize( 
-    'school-data', 
-    'postgres', 
+    process.env.DB_NAME || 'school-server', 
+    process.env.DB_USER || 'postgres', 
     process.env.DB_PASSWORD, 
     {
-    host: 'localhost',
+    host: process.env.DB_HOST,
     dialect: 'postgres'
 
 })

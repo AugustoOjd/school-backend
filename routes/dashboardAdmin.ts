@@ -6,6 +6,7 @@ import { getStudents,
 import {check} from 'express-validator'
 import { isAdminRole } from '../middlewares/validateRole'
 import { validarJWTAdmin } from '../middlewares/validateJWT'
+import { isSuperAdminRole } from '../middlewares/validarSuperAdmin'
 
 
 const router = Router()
@@ -25,6 +26,7 @@ router.get('/:id', [
 
 router.put('/:id', [
     validarJWTAdmin,
+    isSuperAdminRole
 ], putStudent )
 
 router.delete('/:id', [
