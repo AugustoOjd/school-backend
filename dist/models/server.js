@@ -39,7 +39,7 @@ class Server {
             register: '/api/register',
         };
         this.app = (0, express_1.default)();
-        this.port = process.env.PORT || '8080';
+        this.port = process.env.PORT || '5432';
         // Base de datos
         this.dbConnection();
         // Middlewares
