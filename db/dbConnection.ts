@@ -9,8 +9,7 @@ const { DB_NAME,
     } = process.env
 
 
-
-export const sequelize = new Sequelize( `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}?sslmode=require `, {
+export const sequelize = new Sequelize( `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME} `, {
     logging: false,
     native: false,
     dialectOptions: {
