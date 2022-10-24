@@ -72,7 +72,7 @@ class Server {
 
         this.app.use( cors(
             {
-                origin: 'http://u-culture.vercel.app',
+                origin: 'https://u-culture-87ru2sz5c-augustoojd.vercel.app/',
                 methods: 'GET, HEAD, PUT, PATCH, POST, DELETE',
                 credentials: true,
               }
