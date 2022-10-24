@@ -70,14 +70,6 @@ class Server {
 
         this.app.use(helmet())
 
-        this.app.use(
-            '/api',
-            createProxyMiddleware({
-              target: 'https://u-culture-augustoojd.vercel.app/',
-              changeOrigin: true,
-            })
-          );
-
         // CORS
 
         this.app.use( cors(
@@ -93,7 +85,7 @@ class Server {
         this.app.use( express.json() )
         // Carpeta Publica
 
-        this.app.use( express.static(path.join(__dirname, 'build')) )
+        this.app.use( express.static('public') )
         
     }
 
