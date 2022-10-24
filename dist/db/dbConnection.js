@@ -11,10 +11,12 @@ const { DB_NAME, DB_USER, DB_PASSWORD, DB_HOST } = process.env;
 exports.sequelize = new sequelize_1.Sequelize(`postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}?ssl=true`, {
     logging: false,
     native: false,
+    port: 5432,
+    dialect: "postgres",
     dialectOptions: {
         ssl: {
             require: true,
-            rejecUnauhorized: false
+            rejectUnauthorized: false
         }
     }
 });
