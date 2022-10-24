@@ -1,5 +1,6 @@
 import express, { Application, json, urlencoded } from 'express'
 import path from 'path'
+import {createProxyMiddleware} from 'http-proxy-middleware'
 import adminRouter from '../routes/dashboardAdmin'
 import loginRouter from '../routes/login'
 import registerRouter from '../routes/register'
@@ -68,6 +69,14 @@ class Server {
         this.app.use( cookieParser() )
 
         this.app.use(helmet())
+
+        this.app.use(
+            '/api',
+            createProxyMiddleware({
+              target: 'https://u-culture-augustoojd.vercel.app/',
+              changeOrigin: true,
+            })
+          );
 
         // CORS
 
