@@ -72,13 +72,13 @@ class Server {
 
         // CORS
 
-        this.app.use( cors(
-            {
-                origin: 'https://u-culture-augustoojd.vercel.app/',
-                methods: 'GET, HEAD, PUT, PATCH, POST, DELETE',
-                credentials: true,
-              }
-        ))
+        // this.app.use( cors(
+        //     {
+        //         origin: 'https://u-culture-augustoojd.vercel.app/',
+        //         methods: 'GET, HEAD, PUT, PATCH, POST, DELETE',
+        //         credentials: true,
+        //       }
+        // ))
         
         // Lectura del body
 
@@ -87,13 +87,6 @@ class Server {
 
         this.app.use( express.static('public') )
 
-        this.app.use(
-            '/api',
-            createProxyMiddleware({
-              target: 'https://u-culture-augustoojd.vercel.app/',
-              changeOrigin: true,
-            })
-          );
         
         
     }

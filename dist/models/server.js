@@ -13,14 +13,11 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const http_proxy_middleware_1 = require("http-proxy-middleware");
 const dashboardAdmin_1 = __importDefault(require("../routes/dashboardAdmin"));
 const login_1 = __importDefault(require("../routes/login"));
 const register_1 = __importDefault(require("../routes/register"));
 const loginAdmin_1 = __importDefault(require("../routes/loginAdmin"));
 const dashboardStudent_1 = __importDefault(require("../routes/dashboardStudent"));
-// import seedRouter from '../routes/seed-data-admin'
-const cors_1 = __importDefault(require("cors"));
 const dbConnection_1 = require("../db/dbConnection");
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const helmet_1 = __importDefault(require("helmet"));
@@ -65,19 +62,17 @@ class Server {
         this.app.use((0, cookie_parser_1.default)());
         this.app.use((0, helmet_1.default)());
         // CORS
-        this.app.use((0, cors_1.default)({
-            origin: 'https://u-culture-augustoojd.vercel.app/',
-            methods: 'GET, HEAD, PUT, PATCH, POST, DELETE',
-            credentials: true,
-        }));
+        // this.app.use( cors(
+        //     {
+        //         origin: 'https://u-culture-augustoojd.vercel.app/',
+        //         methods: 'GET, HEAD, PUT, PATCH, POST, DELETE',
+        //         credentials: true,
+        //       }
+        // ))
         // Lectura del body
         this.app.use(express_1.default.json());
         // Carpeta Publica
         this.app.use(express_1.default.static('public'));
-        this.app.use('/api', (0, http_proxy_middleware_1.createProxyMiddleware)({
-            target: 'https://u-culture-augustoojd.vercel.app/',
-            changeOrigin: true,
-        }));
     }
     routes() {
         this.app.use(this.paths.dashboard, dashboardAdmin_1.default),
