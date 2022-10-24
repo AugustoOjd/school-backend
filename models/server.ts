@@ -69,10 +69,10 @@ class Server {
         this.app.use(helmet())
 
         // CORS
-        
+
         this.app.use( cors(
             {
-                origin: 'https://u-culture.vercel.app/',
+                origin: 'https://u-culture.vercel.app',
                 methods: 'GET, HEAD, PUT, PATCH, POST, DELETE',
                 credentials: true,
               }
