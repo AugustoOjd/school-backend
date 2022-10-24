@@ -18,6 +18,8 @@ const login_1 = __importDefault(require("../routes/login"));
 const register_1 = __importDefault(require("../routes/register"));
 const loginAdmin_1 = __importDefault(require("../routes/loginAdmin"));
 const dashboardStudent_1 = __importDefault(require("../routes/dashboardStudent"));
+// import seedRouter from '../routes/seed-data-admin'
+const cors_1 = __importDefault(require("cors"));
 const dbConnection_1 = require("../db/dbConnection");
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
 const helmet_1 = __importDefault(require("helmet"));
@@ -62,6 +64,7 @@ class Server {
         this.app.use((0, cookie_parser_1.default)());
         this.app.use((0, helmet_1.default)());
         // CORS
+        this.app.use((0, cors_1.default)());
         // this.app.use( cors(
         //     {
         //         origin: 'https://u-culture-augustoojd.vercel.app/',

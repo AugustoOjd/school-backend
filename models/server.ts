@@ -71,7 +71,7 @@ class Server {
         this.app.use(helmet())
 
         // CORS
-
+        this.app.use( cors())
         // this.app.use( cors(
         //     {
         //         origin: 'https://u-culture-augustoojd.vercel.app/',
