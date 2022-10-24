@@ -72,11 +72,13 @@ class Server {
 
         this.app.use( cors(
             {
-                origin: 'https://u-culture.vercel.app',
+                origin: 'http://u-culture.vercel.app',
                 methods: 'GET, HEAD, PUT, PATCH, POST, DELETE',
                 credentials: true,
+                allowedHeaders: 'Content-Type,Authorization'
               }
         ))
+        
         // Lectura del body
 
         this.app.use( express.json() )
