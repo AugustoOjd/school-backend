@@ -1,4 +1,5 @@
 import express, { Application, json, urlencoded } from 'express'
+import path from 'path'
 import adminRouter from '../routes/dashboardAdmin'
 import loginRouter from '../routes/login'
 import registerRouter from '../routes/register'
@@ -83,7 +84,7 @@ class Server {
         this.app.use( express.json() )
         // Carpeta Publica
 
-        this.app.use( express.static( 'public' ) )
+        this.app.use( express.static(path.join(__dirname, 'build')) )
         
     }
 

@@ -13,6 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const path_1 = __importDefault(require("path"));
 const dashboardAdmin_1 = __importDefault(require("../routes/dashboardAdmin"));
 const login_1 = __importDefault(require("../routes/login"));
 const register_1 = __importDefault(require("../routes/register"));
@@ -72,7 +73,7 @@ class Server {
         // Lectura del body
         this.app.use(express_1.default.json());
         // Carpeta Publica
-        this.app.use(express_1.default.static('public'));
+        this.app.use(express_1.default.static(path_1.default.join(__dirname, 'build')));
     }
     routes() {
         this.app.use(this.paths.dashboard, dashboardAdmin_1.default),
