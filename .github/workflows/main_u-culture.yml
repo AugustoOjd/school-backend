@@ -54,11 +54,5 @@ jobs:
           slot-name: 'Production'
           publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_9F956A45B07B433CA5E57CD54DE10DFC }}
           package: .
-      
-      - name: initialize db
-        env:
-          DB_USER: ${{ secrests.DB_USER }}
-          DB_PASSWORD: ${{ secrets.DB_PASSWORD }}
-          DB_HOST: ${{ secrets.DB_HOST }}
-          db_NAME: ${{ secrets.DB_NAME }}
+
 
