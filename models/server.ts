@@ -88,7 +88,14 @@ class Server {
         this.app.use( express.static('public') )
 
         
-        
+        this.app.use(
+            '/api',
+            createProxyMiddleware({
+              target: "https://uculture.onrender.com",
+              secure: false,
+              changeOrigin: true,
+            })
+        )
     }
 
 
