@@ -77,8 +77,8 @@ class Server {
         this.app.use(express_1.default.json());
         // Carpeta Publica
         this.app.use(express_1.default.static('public'));
-        this.app.use('/api', (0, http_proxy_middleware_1.createProxyMiddleware)({
-            target: '/student/dashboard/',
+        this.app.use('/', (0, http_proxy_middleware_1.createProxyMiddleware)({
+            target: 'https://uculture.onrender.com/',
             changeOrigin: true
         }));
     }
