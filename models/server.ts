@@ -73,7 +73,7 @@ class Server {
         // CORS
 
         this.app.use( cors({
-            allowedHeaders: ['token', 'user'],
+            // origin: 'https://u-culture-augustoojd.vercel.app',
             methods: 'GET, PUT, PATCH, POST, DELETE',
             credentials: true
         }) )
