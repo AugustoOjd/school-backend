@@ -13,7 +13,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const http_proxy_middleware_1 = require("http-proxy-middleware");
 const dashboardAdmin_1 = __importDefault(require("../routes/dashboardAdmin"));
 const login_1 = __importDefault(require("../routes/login"));
 const register_1 = __importDefault(require("../routes/register"));
@@ -65,22 +64,21 @@ class Server {
         this.app.use((0, cookie_parser_1.default)());
         this.app.use((0, helmet_1.default)());
         // CORS
-        this.app.use((0, cors_1.default)());
-        // this.app.use( cors(
-        //     {
-        //         origin: 'https://u-culture-augustoojd.vercel.app/',
-        //         methods: 'GET, HEAD, PUT, PATCH, POST, DELETE',
-        //         credentials: true,
-        //       }
-        // ))
+        // this.app.use( cors())
+        this.app.use((0, cors_1.default)({
+            origin: 'https://u-culture-augustoojd.vercel.app/',
+            methods: 'GET, HEAD, PUT, PATCH, POST, DELETE',
+            credentials: true,
+        }));
         // Lectura del body
         this.app.use(express_1.default.json());
         // Carpeta Publica
         this.app.use(express_1.default.static('public'));
-        this.app.use('/', (0, http_proxy_middleware_1.createProxyMiddleware)({
-            target: 'https://uculture.onrender.com/',
-            changeOrigin: true
-        }));
+        // this.app.use( '/', 
+        //     createProxyMiddleware({ 
+        //         target: 'https://uculture.onrender.com/', 
+        //         changeOrigin: true })
+        // )
     }
     routes() {
         this.app.use(this.paths.dashboard, dashboardAdmin_1.default),
