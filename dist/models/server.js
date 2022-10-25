@@ -65,7 +65,7 @@ class Server {
         this.app.use((0, helmet_1.default)());
         // CORS
         this.app.use((0, cors_1.default)({
-            // origin: 'https://u-culture-augustoojd.vercel.app',
+            origin: 'https://u-culture-augustoojd.vercel.app',
             methods: 'GET, PUT, PATCH, POST, DELETE',
             credentials: true
         }));
