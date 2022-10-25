@@ -72,7 +72,9 @@ class Server {
 
         // CORS
         this.app.use( cors({
-            methods: 'GET, PUT, PATCH, POST, DELETE'
+            origin: 'https://u-culture-augustoojd.vercel.app/',
+            methods: 'GET, PUT, PATCH, POST, DELETE',
+            credentials: true
         }))
         // this.app.use( cors(
         //     {
@@ -90,6 +92,15 @@ class Server {
         this.app.use( express.static('public') )
         // this.app.use('/public', express.static(path.join(__dirname, 'static')))
         
+        // Proxy
+
+        // this.app.use(
+        //     '/api',
+        //     createProxyMiddleware({
+        //       target: 'https://u-culture-augustoojd.vercel.app/',
+        //       changeOrigin: true,
+        //     })
+        // )
     }
 
 
