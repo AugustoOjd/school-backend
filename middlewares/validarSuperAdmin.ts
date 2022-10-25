@@ -23,12 +23,14 @@ export const isSuperAdminRole = async (req: Request, res: Response, next: NextFu
             return res.status(401).json({ msg: 'Este usuario no es super admin'})
         }
 
+        
+    next()
+    
     } catch (error) {
         console.log(error)
         return res.status(401).json({msg: 'bad request en validacion Role'})
     }
 
 
-    next()
 
 }

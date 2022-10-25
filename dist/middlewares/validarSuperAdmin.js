@@ -27,11 +27,11 @@ const isSuperAdminRole = (req, res, next) => __awaiter(void 0, void 0, void 0, f
         if (admin.role !== 'SuperAdmin') {
             return res.status(401).json({ msg: 'Este usuario no es super admin' });
         }
+        next();
     }
     catch (error) {
         console.log(error);
         return res.status(401).json({ msg: 'bad request en validacion Role' });
     }
-    next();
 });
 exports.isSuperAdminRole = isSuperAdminRole;
