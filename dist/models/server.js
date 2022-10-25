@@ -67,8 +67,8 @@ class Server {
         // CORS
         // this.app.use( cors())
         this.app.use((0, cors_1.default)({
-            origin: 'https://u-culture-augustoojd.vercel.app/',
-            methods: 'GET, HEAD, PUT, PATCH, POST, DELETE'
+            origin: '*',
+            methods: 'GET, PUT, PATCH, POST, DELETE'
         }));
         // Lectura del body
         this.app.use(express_1.default.json());
