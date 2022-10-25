@@ -60,11 +60,7 @@ export const putPoints = async (req: Request, res: Response) =>{
         }
 
 
-        return res.status(201).json({
-            msg: 'Actulizado correctamente', 
-            point: point,
-            nivel: nivel
-        })
+        return res.status(201).json(student)
 
     } catch (error) {
         console.log(error)

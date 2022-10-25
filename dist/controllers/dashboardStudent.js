@@ -46,11 +46,7 @@ const putPoints = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
                 }
             });
         }
-        return res.status(201).json({
-            msg: 'Actulizado correctamente',
-            point: point,
-            nivel: nivel
-        });
+        return res.status(201).json(student);
     }
     catch (error) {
         console.log(error);

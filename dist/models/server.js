@@ -13,7 +13,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
-const path_1 = __importDefault(require("path"));
 const dashboardAdmin_1 = __importDefault(require("../routes/dashboardAdmin"));
 const login_1 = __importDefault(require("../routes/login"));
 const register_1 = __importDefault(require("../routes/register"));
@@ -68,13 +67,14 @@ class Server {
         // this.app.use( cors())
         this.app.use((0, cors_1.default)({
             origin: '*',
-            methods: 'GET, PUT, PATCH, POST, DELETE'
+            methods: 'GET, PUT, PATCH, POST, DELETE',
+            credentials: true
         }));
         // Lectura del body
         this.app.use(express_1.default.json());
         // Carpeta Publica
         this.app.use(express_1.default.static('public'));
-        this.app.use('/public', express_1.default.static(path_1.default.join(__dirname, 'static')));
+        // this.app.use('/public', express.static(path.join(__dirname, 'static')))
     }
     routes() {
         this.app.use(this.paths.dashboard, dashboardAdmin_1.default),

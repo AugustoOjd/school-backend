@@ -26,7 +26,7 @@ class Server {
         // paths administradores
         dashboard:          '/api/admin/dashboard',
         loginAdmin:         '/api/admin',
-        seedData:        '/api/seed-data',
+        seedData:           '/api/seed-data',
 
         // paths estudiantes
         dashboardStudent:   '/api/student/dashboard',
@@ -75,7 +75,8 @@ class Server {
         this.app.use( cors(
             {
                 origin: '*',
-                methods: 'GET, PUT, PATCH, POST, DELETE'
+                methods: 'GET, PUT, PATCH, POST, DELETE',
+                credentials: true
               }
         ))
         
@@ -85,7 +86,7 @@ class Server {
         // Carpeta Publica
 
         this.app.use( express.static('public') )
-        this.app.use('/public', express.static(path.join(__dirname, 'static')))
+        // this.app.use('/public', express.static(path.join(__dirname, 'static')))
         
     }
 
