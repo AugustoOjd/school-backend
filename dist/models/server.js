@@ -64,7 +64,9 @@ class Server {
         this.app.use((0, cookie_parser_1.default)());
         this.app.use((0, helmet_1.default)());
         // CORS
-        this.app.use((0, cors_1.default)());
+        this.app.use((0, cors_1.default)({
+            methods: 'GET, PUT, PATCH, POST, DELETE'
+        }));
         // this.app.use( cors(
         //     {
         //         origin: '*',

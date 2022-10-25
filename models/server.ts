@@ -71,7 +71,9 @@ class Server {
         this.app.use(helmet())
 
         // CORS
-        this.app.use( cors())
+        this.app.use( cors({
+            methods: 'GET, PUT, PATCH, POST, DELETE'
+        }))
         // this.app.use( cors(
         //     {
         //         origin: '*',
