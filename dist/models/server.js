@@ -13,6 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
+const http_proxy_middleware_1 = require("http-proxy-middleware");
 const dashboardAdmin_1 = __importDefault(require("../routes/dashboardAdmin"));
 const login_1 = __importDefault(require("../routes/login"));
 const register_1 = __importDefault(require("../routes/register"));
@@ -66,8 +67,8 @@ class Server {
         // CORS
         this.app.use((0, cors_1.default)({
             origin: 'https://u-culture-augustoojd.vercel.app/',
-            methods: 'GET, PUT, PATCH, POST, DELETE',
-            credentials: true
+            methods: 'GET, PUT, PATCH, POST, DELETE'
+            // credentials: true
         }));
         // this.app.use( cors(
         //     {
@@ -82,13 +83,10 @@ class Server {
         this.app.use(express_1.default.static('public'));
         // this.app.use('/public', express.static(path.join(__dirname, 'static')))
         // Proxy
-        // this.app.use(
-        //     '/api',
-        //     createProxyMiddleware({
-        //       target: 'https://u-culture-augustoojd.vercel.app/',
-        //       changeOrigin: true,
-        //     })
-        // )
+        this.app.use('/api', (0, http_proxy_middleware_1.createProxyMiddleware)({
+            target: 'https://u-culture-augustoojd.vercel.app/',
+            changeOrigin: true,
+        }));
     }
     routes() {
         this.app.use(this.paths.dashboard, dashboardAdmin_1.default),
