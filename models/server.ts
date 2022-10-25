@@ -71,18 +71,14 @@ class Server {
         this.app.use(helmet())
 
         // CORS
-        this.app.use( cors({
-            origin: 'https://u-culture-augustoojd.vercel.app/',
-            methods: 'GET, PUT, PATCH, POST, DELETE',
-            credentials: false
-        }))
-        // this.app.use( cors(
-        //     {
-        //         origin: '*',
-        //         methods: 'GET, PUT, PATCH, POST, DELETE',
-        //         credentials: true
-        //       }
-        // ))
+
+        this.app.use( cors() )
+        // this.app.use( cors({
+        //     origin: 'https://u-culture-augustoojd.vercel.app',
+        //     methods: 'GET, PUT, PATCH, POST, DELETE',
+        //     credentials: false
+        // }))
+
         
         // Lectura del body
 
