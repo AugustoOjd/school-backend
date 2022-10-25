@@ -71,14 +71,14 @@ class Server {
         this.app.use(helmet())
 
         // CORS
-        // this.app.use( cors())
-        this.app.use( cors(
-            {
-                origin: '*',
-                methods: 'GET, PUT, PATCH, POST, DELETE',
-                credentials: true
-              }
-        ))
+        this.app.use( cors())
+        // this.app.use( cors(
+        //     {
+        //         origin: '*',
+        //         methods: 'GET, PUT, PATCH, POST, DELETE',
+        //         credentials: true
+        //       }
+        // ))
         
         // Lectura del body
 
