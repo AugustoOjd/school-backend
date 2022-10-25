@@ -19,7 +19,7 @@ const login_1 = __importDefault(require("../routes/login"));
 const register_1 = __importDefault(require("../routes/register"));
 const loginAdmin_1 = __importDefault(require("../routes/loginAdmin"));
 const dashboardStudent_1 = __importDefault(require("../routes/dashboardStudent"));
-// import seedRouter from '../routes/seed-data-admin'
+const seed_data_admin_1 = __importDefault(require("../routes/seed-data-admin"));
 const cors_1 = __importDefault(require("cors"));
 const dbConnection_1 = require("../db/dbConnection");
 const cookie_parser_1 = __importDefault(require("cookie-parser"));
@@ -33,7 +33,7 @@ class Server {
             // paths administradores
             dashboard: '/api/admin/dashboard',
             loginAdmin: '/api/admin',
-            // seedData:        '/api/seed-data',
+            seedData: '/api/seed-data',
             // paths estudiantes
             dashboardStudent: '/api/student/dashboard',
             login: '/api/login',
@@ -65,26 +65,16 @@ class Server {
         this.app.use((0, cookie_parser_1.default)());
         this.app.use((0, helmet_1.default)());
         // CORS
-        this.app.use((0, cors_1.default)());
-        // this.app.use( cors(
-        //     {
-        //         origin: '*',
-        //         methods: 'GET, HEAD, PUT, PATCH, POST, DELETE',
-        //         credentials: true,
-        //         preflightContinue: false,
-        //         allowedHeaders: 'Content-Type, x-requested-with'
-        //       }
-        // ))
+        // this.app.use( cors())
+        this.app.use((0, cors_1.default)({
+            origin: 'https://u-culture-augustoojd.vercel.app/',
+            methods: 'GET, HEAD, PUT, PATCH, POST, DELETE'
+        }));
         // Lectura del body
         this.app.use(express_1.default.json());
         // Carpeta Publica
         this.app.use(express_1.default.static('public'));
         this.app.use('/public', express_1.default.static(path_1.default.join(__dirname, 'static')));
-        // this.app.use( '/', 
-        //     createProxyMiddleware({ 
-        //         target: 'https://uculture.onrender.com/', 
-        //         changeOrigin: true })
-        // )
     }
     routes() {
         this.app.use(this.paths.dashboard, dashboardAdmin_1.default),
@@ -92,7 +82,7 @@ class Server {
             this.app.use(this.paths.register, register_1.default),
             this.app.use(this.paths.loginAdmin, loginAdmin_1.default),
             this.app.use(this.paths.dashboardStudent, dashboardStudent_1.default);
-        // this.app.use( this.paths.seedData, seedRouter )
+        this.app.use(this.paths.seedData, seed_data_admin_1.default);
     }
     listen() {
         this.app.listen(this.port, () => {

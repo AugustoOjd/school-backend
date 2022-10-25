@@ -1,11 +1,11 @@
-// import { Router } from "express";
-// import { createAdmin } from "../controllers/dashboardAdmin";
+import { Router } from "express";
+import { createAdmin } from "../controllers/dashboardAdmin";
 
 
-// const router = Router()
+const router = Router()
 
 
-// router.post('/admin', createAdmin )
+router.post('/admin', createAdmin )
 
 
-// export default router
+export default router
