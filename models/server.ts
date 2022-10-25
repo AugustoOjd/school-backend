@@ -74,7 +74,7 @@ class Server {
         // this.app.use( cors())
         this.app.use( cors(
             {
-                origin: 'https://u-culture-augustoojd.vercel.app/',
+                origin: '*',
                 methods: 'GET, HEAD, PUT, PATCH, POST, DELETE',
                 credentials: true,
                 preflightContinue: false,
@@ -88,7 +88,7 @@ class Server {
         // Carpeta Publica
 
         this.app.use( express.static('public') )
-
+        this.app.use('/public', express.static(path.join(__dirname, 'static')))
         
         // this.app.use( '/', 
         //     createProxyMiddleware({ 
