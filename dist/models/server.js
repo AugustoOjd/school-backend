@@ -69,7 +69,8 @@ class Server {
             origin: 'https://u-culture-augustoojd.vercel.app/',
             methods: 'GET, HEAD, PUT, PATCH, POST, DELETE',
             credentials: true,
-            preflightContinue: false
+            preflightContinue: false,
+            allowedHeaders: 'Content-Type, x-requested-with'
         }));
         // Lectura del body
         this.app.use(express_1.default.json());
