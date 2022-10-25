@@ -71,16 +71,16 @@ class Server {
         this.app.use(helmet())
 
         // CORS
-        // this.app.use( cors())
-        this.app.use( cors(
-            {
-                origin: '*',
-                methods: 'GET, HEAD, PUT, PATCH, POST, DELETE',
-                credentials: true,
-                preflightContinue: false,
-                allowedHeaders: 'Content-Type, x-requested-with'
-              }
-        ))
+        this.app.use( cors())
+        // this.app.use( cors(
+        //     {
+        //         origin: '*',
+        //         methods: 'GET, HEAD, PUT, PATCH, POST, DELETE',
+        //         credentials: true,
+        //         preflightContinue: false,
+        //         allowedHeaders: 'Content-Type, x-requested-with'
+        //       }
+        // ))
         
         // Lectura del body
 
