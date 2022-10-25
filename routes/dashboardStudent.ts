@@ -10,11 +10,11 @@ router.get('/', [
 ], dashboardRanking)
 
 router.get('/session/:id', [
-    validarJWT
+    // validarJWT
 ], getSession)
 
 router.put('/:id', [
-    validarJWT
+    // validarJWT
 ], putPoints)
 
 
