@@ -7,15 +7,16 @@ const validateJWT_1 = require("../middlewares/validateJWT");
 const validarSuperAdmin_1 = require("../middlewares/validarSuperAdmin");
 const router = (0, express_1.Router)();
 router.get('/', [
-    validateJWT_1.validarJWTAdmin,
-    // check('role').isIn(['admin']),
-    validateRole_1.isAdminRole,
+// validarJWTAdmin,
+// check('role').isIn(['admin']),
+// isAdminRole,
 ], dashboardAdmin_1.getStudents);
 router.get('/:id', [
     validateJWT_1.validarJWTAdmin,
+    validateRole_1.isAdminRole,
 ], dashboardAdmin_1.getStudent);
 router.put('/:id', [
-    validateJWT_1.validarJWTAdmin,
+    // validarJWTAdmin,
     validarSuperAdmin_1.isSuperAdminRole
 ], dashboardAdmin_1.putStudent);
 router.delete('/:id', [

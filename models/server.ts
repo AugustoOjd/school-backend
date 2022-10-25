@@ -77,12 +77,6 @@ class Server {
             methods: 'GET, PUT, PATCH, POST, DELETE',
             credentials: true
         }) )
-        // this.app.use( cors({
-        //     origin: 'https://u-culture-augustoojd.vercel.app',
-        //     methods: 'GET, PUT, PATCH, POST, DELETE',
-        //     credentials: false
-        // }))
-
         
         // Lectura del body
 
@@ -91,16 +85,7 @@ class Server {
 
         this.app.use( express.static('public') )
         // this.app.use('/public', express.static(path.join(__dirname, 'static')))
-        
-        // Proxy
 
-        // this.app.use(
-        //     '/api',
-        //     createProxyMiddleware({
-        //       target: 'https://u-culture-augustoojd.vercel.app/',
-        //       changeOrigin: true,
-        //     })
-        // )
     }
 
 

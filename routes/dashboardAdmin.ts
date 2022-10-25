@@ -14,18 +14,19 @@ const router = Router()
 
 
 router.get('/', [
-    validarJWTAdmin,
+    // validarJWTAdmin,
     // check('role').isIn(['admin']),
 
-    isAdminRole,
+    // isAdminRole,
 ], getStudents )
 
 router.get('/:id', [
     validarJWTAdmin,
+    isAdminRole,
 ], getStudent )
 
 router.put('/:id', [
-    validarJWTAdmin,
+    // validarJWTAdmin,
     isSuperAdminRole
 ], putStudent )
 
