@@ -12,32 +12,34 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteStudent = exports.putStudent = exports.getStudent = exports.getStudents = exports.createAdmin = void 0;
-const admin_1 = __importDefault(require("../models/admin"));
+exports.deleteStudent = exports.putStudent = exports.getStudent = exports.getStudents = void 0;
 const student_1 = __importDefault(require("../models/student"));
-const bcryptjs_1 = __importDefault(require("bcryptjs"));
 // Creacion seed de admins
-const createAdmin = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { name = '', lastName = '', email = '', password = '', role = 'admin', state = true } = req.body;
-    try {
-        const admin = yield admin_1.default.create({
-            name,
-            lastName,
-            email: email.toLocaleLowerCase(),
-            password: bcryptjs_1.default.hashSync(password),
-            role,
-            state,
-        });
-        return res.status(200).json(admin);
-    }
-    catch (error) {
-        console.log(error);
-        return res.status(400).json({
-            msg: 'bad request seed-data'
-        });
-    }
-});
-exports.createAdmin = createAdmin;
+// export const createAdmin = async (req: Request, res: Response)=>{
+//     const { name        = '',
+//             lastName    = '', 
+//             email       = '', 
+//             password    = '',
+//             role        = 'admin',
+//             state       = true
+//         } = req.body
+//     try {
+//         const admin = await Admin.create({
+//             name,    
+//             lastName,
+//             email: email.toLocaleLowerCase(),   
+//             password: bcrypt.hashSync( password ),
+//             role,   
+//             state,   
+//         })
+//         return res.status(200).json(admin)
+//     } catch (error) {
+//         console.log(error)
+//         return res.status(400).json({
+//             msg: 'bad request seed-data'
+//         })
+//     }
+// }
 const getStudents = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const students = yield student_1.default.findAll();
